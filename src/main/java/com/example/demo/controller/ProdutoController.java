@@ -6,8 +6,9 @@ import com.example.demo.service.Produtoservice;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
+ @RestController
 @RequestMapping("/produto")
 
 public class ProdutoController {
@@ -29,6 +30,8 @@ public class ProdutoController {
         return service.removerProduto(id)?
                 "Remoção com sucesso": "Produto não encontrado";
     }
-
-
-}
+     @PutMapping("/{id}")
+     public Optional<Produto> atualizar(@PathVariable Long id, @RequestBody Produto novo) {
+         return service.atualizaProduto(id, novo);
+     }
+ }
